@@ -1,0 +1,40 @@
+{
+  "dataset_root": "E:\\CTS\\dataset\\asap7\\parsed_ml_dataset_asap7",
+  "designs": [
+    "aes",
+    "blabla",
+    "ethmac",
+    "gcd",
+    "ibex",
+    "jpeg",
+    "picorv32",
+    "ppu",
+    "riscv32i",
+    "s35932",
+    "salsa20"
+  ],
+  "num_designs": 11,
+  "num_design_strategy_records": 100,
+  "path_rows": 678380,
+  "path_rows_by_stage": {
+    "cts": 339190,
+    "route": 339190
+  },
+  "path_rows_by_design_route": {
+    "aes": 6120,
+    "blabla": 22000,
+    "ethmac": 7360,
+    "gcd": 700,
+    "ibex": 69450,
+    "jpeg": 88940,
+    "picorv32": 29540,
+    "ppu": 57420,
+    "riscv32i": 22460,
+    "s35932": 35200
+  },
+  "notes": [
+    "arrival_ns is the report data arrival time, not a clock-period-normalized delay.",
+    "slack_ns is parsed from endpoint-complete reports and is in ns.",
+    "The route report is used for the primary supervised-target distribution."
+  ]
+}
