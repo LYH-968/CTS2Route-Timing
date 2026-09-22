@@ -180,6 +180,12 @@ class ReportData:
     ir_points: list[dict[str, float]] = field(default_factory=list)
     net_power: dict[str, dict[str, Any]] = field(default_factory=dict)
     reports_dir: Path | None = None
+    # 这个 ReportData 是从哪个 stage 的 ml_reports 来的（`place` / `cts` / `route`）。
+    # 决定 `_write_reports()` 该拷哪份 timing report —— 两个 stage 的 report 文件名**不同**：
+    # `place`/`cts` 是 `grt_path_report.rpt`（`read_db 4_cts.odb` 生成），
+    # `route`(final) 是 `path_report.rpt`（`read_db 6_final.odb` 生成）。
+    # 见 `generate_ml_reports.py` 里 `combine_endpoint_reports` 的两个分支。
+    stage: str = ""
 
 
 @dataclass
@@ -842,11 +848,23 @@ def parse_net_power(path: Path) -> dict[str, dict[str, Any]]:
     return rows
 
 
+def stage_timing_report_name(stage: str, suffix: str) -> str:
+    """该 stage 的 timing report 基名（`place`/`cts` → `grt_path_report`，`route` → `path_report`）。
+
+    两个 stage 的 report 是**两份不同的文件**，由 `generate_ml_reports.py` 在不同 ODB 上生成：
+    `place`/`cts` 读 `4_cts.odb` → `grt_path_report.rpt`；`route`(=final) 读 `6_final.odb` →
+    `path_report.rpt`。取 src（供 `_write_reports()` 拷进 vectors 目录）和取 json（供本函数解析）
+    必须用同一个基名，否则 CTS/route 两个 stage 会写出同一份文件。
+    """
+    base = "grt_path_report" if stage in {"place", "cts"} else "path_report"
+    return f"{base}.{suffix}"
+
+
 def load_ml_reports(reports_dir: Path, stage: str, platform: str) -> ReportData:
     is_preroute_stage = stage in {"place", "cts"}
     has_route_reports = stage == "route"
     power = parse_instance_power(reports_dir / "instance_power.rpt") if has_route_reports else {}
-    path_name = "grt_path_report.json" if is_preroute_stage else "path_report.json"
+    path_name = stage_timing_report_name(stage, "json")
     checks, net_metrics, pin_metrics, cell_arc_delays = parse_path_report(reports_dir / path_name)
     congestion_markers = parse_marker_report(reports_dir / "congestion.rpt", "congestion")
     drc_markers = parse_marker_report(reports_dir / "drc.rpt", "drc") if has_route_reports else []
@@ -871,6 +889,7 @@ def load_ml_reports(reports_dir: Path, stage: str, platform: str) -> ReportData:
         ir_points=ir_points,
         net_power=net_power,
         reports_dir=reports_dir,
+        stage=stage,
     )
 
 
@@ -1608,7 +1627,13 @@ class DatasetWriter:
     def _write_reports(self) -> None:
         design_name = self.design.name
         reports_dir = self.reports.reports_dir
-        report_src = reports_dir / "path_report.rpt" if reports_dir else None
+        # 按 stage 选 timing report 源：`place`/`cts` → `grt_path_report.rpt`（4_cts.odb），
+        # `route` → `path_report.rpt`（6_final.odb）。stage 为空（reports_dir 不存在时的兜底
+        # `ReportData()`）时不拷任何 timing report。
+        if reports_dir and self.reports.stage:
+            report_src = reports_dir / stage_timing_report_name(self.reports.stage, "rpt")
+        else:
+            report_src = None
         power_src = reports_dir / "power.rpt" if reports_dir else None
         inst_power_src = reports_dir / "instance_power.rpt" if reports_dir else None
         for src, dst_name in [
