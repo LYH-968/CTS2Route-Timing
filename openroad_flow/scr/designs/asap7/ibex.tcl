@@ -1,0 +1,20 @@
+global vars
+
+set vars(design_name) "ibex_core"
+set vars(design_nick) "ibex"
+
+set vars(verilog_files) [concat \
+    [lsort [glob -nocomplain "$vars(flow_home)/designs/src/ibex_sv/*.sv"]] \
+    [list "$vars(flow_home)/designs/src/ibex_sv/syn/rtl/prim_clock_gating.v"]]
+set vars(verilog_include_dirs) [list \
+    "$vars(flow_home)/designs/src/ibex_sv/vendor/lowrisc_ip/prim/rtl"]
+set vars(sdc_file) "$vars(flow_home)/designs/asap7/ibex/constraint.sdc"
+set vars(synth_hdl_frontend) "slang"
+
+set vars(die_area) "0 0 65 65"
+set vars(core_area) "2 2 62 62"
+set vars(place_density) 0.68
+set vars(enable_dpo) 0
+set vars(tns_end_percent) 100
+set vars(abc_area) 0
+set vars(cts_buffer_list) [list "BUFx4_ASAP7_75t_R" "BUFx10_ASAP7_75t_R"]
