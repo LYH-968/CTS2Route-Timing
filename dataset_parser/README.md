@@ -1,6 +1,6 @@
-# gcd-style ML Dataset Parser
+# ML Dataset Parser
 
-本 parser 用于把 OpenROAD-flow-scripts 已完成的全流程设计结果整理成与 `/home/lyh/OpenROAD-flow-scripts/iDATA/gcd` 一致的机器学习数据集结构。重点输出为 `place/vectors`、`cts/vectors` 和 `route/vectors` 下的 JSON vectors。
+本 parser 用于把 OpenROAD-flow-scripts 已完成的全流程设计结果整理成机器学习数据集结构。重点输出为 `place/vectors`、`cts/vectors` 和 `route/vectors` 下的 JSON vectors。
 
 ## 代码文件结构
 
