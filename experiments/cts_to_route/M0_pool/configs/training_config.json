@@ -1,0 +1,350 @@
+{
+  "schema_mode": "cts_net_v3",
+  "task": "cts_to_route_path_delay_direct_regression",
+  "plan": "B (no global routing at inference)",
+  "target": "timing_paths['target_route'][:, 0] (route path delay, ns)",
+  "loss_mask": "label_mask",
+  "slack_loss_mask": "slack_mask (separate, not interchangeable)",
+  "ablation_grt": false,
+  "graph_root": "E:/CTS/dataset/asap7/graphs_cts_v3",
+  "split_policy": "physical_split_dir (handoff §6)",
+  "splits": {
+    "policy": "per_design_strategy_base_in_train",
+    "train": [
+      "aes",
+      "blabla",
+      "ethmac",
+      "gcd",
+      "ibex",
+      "jpeg",
+      "ppu",
+      "picorv32",
+      "riscv32i",
+      "s35932"
+    ],
+    "val": [
+      "aes",
+      "blabla",
+      "ethmac",
+      "gcd",
+      "ibex",
+      "jpeg",
+      "ppu",
+      "picorv32",
+      "riscv32i",
+      "s35932"
+    ],
+    "test": [
+      "aes",
+      "blabla",
+      "ethmac",
+      "gcd",
+      "ibex",
+      "jpeg",
+      "ppu",
+      "picorv32",
+      "riscv32i",
+      "s35932"
+    ],
+    "strategies_per_design": {
+      "train": 5,
+      "val": 1,
+      "test": 4
+    },
+    "note": "split 是 per-design 的策略级划分：每个 design 的 base + 4 个变体参与梯度，1 个变体作 val，4 个变体作 test（见 code/resplit_cts_strategies.py）"
+  },
+  "node_dim": 19,
+  "edge_dim": 15,
+  "geometry_features": [
+    "wl_manh_um",
+    "n_pins",
+    "wl_per_pin_um"
+  ],
+  "geometry_stats": {
+    "mean": [
+      80.52070361465815,
+      15.240781550571569,
+      5.6770082796532035
+    ],
+    "std": [
+      45.872852688157266,
+      9.039726845432241,
+      2.791565150144738
+    ]
+  },
+  "design_features": [
+    "clock_period_ns",
+    "utilization",
+    "log1p_die_area_um2",
+    "log1p_num_nodes"
+  ],
+  "design_stats": {
+    "mean": [
+      1.0829999896877496,
+      0.4265400640381393,
+      8.349645815081574,
+      10.66412551669018
+    ],
+    "std": [
+      0.5179198741918646,
+      0.11977655218584592,
+      1.0941688224404686,
+      1.3102349782895681
+    ]
+  },
+  "use_design_features": true,
+  "trivial_baselines_fitted": {
+    "per_design": {
+      "aes": {
+        "const_value": 0.14387919008731842,
+        "geom_coef": [
+          0.0022739653552097286,
+          0.01311846614451271,
+          -0.0022924936193947122,
+          -0.07750901761668748
+        ]
+      },
+      "blabla": {
+        "const_value": 0.17843002080917358,
+        "geom_coef": [
+          0.0018044025941606012,
+          0.01274654779264335,
+          0.0004816597225294479,
+          -0.08520129865251594
+        ]
+      },
+      "ethmac": {
+        "const_value": 0.09979958087205887,
+        "geom_coef": [
+          0.0007652380515093861,
+          0.006059263591294542,
+          -0.0004152096467655523,
+          -0.009570189108445272
+        ]
+      },
+      "gcd": {
+        "const_value": 0.042292214930057526,
+        "geom_coef": [
+          0.0012301285943058535,
+          0.0035089093008166677,
+          -0.006456739360862325,
+          0.008301051128792371
+        ]
+      },
+      "ibex": {
+        "const_value": 0.18982191383838654,
+        "geom_coef": [
+          0.0006092307223047202,
+          0.012607076309211835,
+          0.011049243064894555,
+          -0.0814872300558188
+        ]
+      },
+      "jpeg": {
+        "const_value": 0.24710310995578766,
+        "geom_coef": [
+          0.0011462956866568022,
+          0.010950157226690613,
+          -0.002793788124491282,
+          -0.011202816397904186
+        ]
+      },
+      "picorv32": {
+        "const_value": 0.2684953510761261,
+        "geom_coef": [
+          0.0010396479960151294,
+          0.01168834786400086,
+          0.010182892636661042,
+          -0.08421551271552624
+        ]
+      },
+      "ppu": {
+        "const_value": 0.19805967807769775,
+        "geom_coef": [
+          0.0030165167256461733,
+          0.007076390985573957,
+          -0.01983554293385391,
+          0.013007307681968136
+        ]
+      },
+      "riscv32i": {
+        "const_value": 0.5343491435050964,
+        "geom_coef": [
+          0.0007145858056888208,
+          0.016072691911302915,
+          0.0008140710560966145,
+          -0.11454655223535741
+        ]
+      },
+      "s35932": {
+        "const_value": 0.2169477939605713,
+        "geom_coef": [
+          0.0025552266710147037,
+          0.00900495366229054,
+          -0.00032786535666448017,
+          -0.05308739166169709
+        ]
+      }
+    },
+    "global": {
+      "const_value": 0.23489010334014893,
+      "geom_coef": [
+        0.00070131380823829,
+        0.014840935862536733,
+        0.007889223789754925,
+        -0.09255484854414729
+      ]
+    }
+  },
+  "train_records": [
+    "aes__ar_tall",
+    "aes__ar_wide",
+    "aes__area_compact",
+    "aes__area_loose",
+    "aes__base",
+    "blabla__ar_tall",
+    "blabla__ar_wide",
+    "blabla__area_compact",
+    "blabla__area_loose",
+    "blabla__base",
+    "ethmac__ar_tall",
+    "ethmac__ar_wide",
+    "ethmac__area_compact",
+    "ethmac__area_loose",
+    "ethmac__base",
+    "gcd__ar_tall",
+    "gcd__ar_wide",
+    "gcd__area_compact",
+    "gcd__area_loose",
+    "gcd__base",
+    "ibex__ar_tall",
+    "ibex__ar_wide",
+    "ibex__area_compact",
+    "ibex__area_loose",
+    "ibex__base",
+    "jpeg__ar_tall",
+    "jpeg__ar_wide",
+    "jpeg__area_compact",
+    "jpeg__area_loose",
+    "jpeg__base",
+    "picorv32__ar_tall",
+    "picorv32__ar_wide",
+    "picorv32__area_compact",
+    "picorv32__area_loose",
+    "picorv32__base",
+    "ppu__ar_tall",
+    "ppu__ar_wide",
+    "ppu__area_compact",
+    "ppu__area_loose",
+    "ppu__base",
+    "riscv32i__ar_tall",
+    "riscv32i__ar_wide",
+    "riscv32i__area_loose",
+    "riscv32i__area_xloose",
+    "riscv32i__base",
+    "s35932__ar_tall",
+    "s35932__ar_wide",
+    "s35932__area_compact",
+    "s35932__area_loose",
+    "s35932__base"
+  ],
+  "eval_records": [
+    "aes__dens_high",
+    "blabla__area_xloose",
+    "ethmac__area_xloose",
+    "gcd__dens_high",
+    "ibex__area_xloose",
+    "jpeg__area_xloose",
+    "picorv32__area_xloose",
+    "ppu__area_xloose",
+    "riscv32i__dens_high",
+    "s35932__area_xloose",
+    "aes__ar_tall",
+    "aes__ar_wide",
+    "aes__area_compact",
+    "aes__area_loose",
+    "aes__base",
+    "blabla__ar_tall",
+    "blabla__ar_wide",
+    "blabla__area_compact",
+    "blabla__area_loose",
+    "blabla__base",
+    "ethmac__ar_tall",
+    "ethmac__ar_wide",
+    "ethmac__area_compact",
+    "ethmac__area_loose",
+    "ethmac__base",
+    "gcd__ar_tall",
+    "gcd__ar_wide",
+    "gcd__area_compact",
+    "gcd__area_loose",
+    "gcd__base",
+    "ibex__ar_tall",
+    "ibex__ar_wide",
+    "ibex__area_compact",
+    "ibex__area_loose",
+    "ibex__base",
+    "jpeg__ar_tall",
+    "jpeg__ar_wide",
+    "jpeg__area_compact",
+    "jpeg__area_loose",
+    "jpeg__base",
+    "picorv32__ar_tall",
+    "picorv32__ar_wide",
+    "picorv32__area_compact",
+    "picorv32__area_loose",
+    "picorv32__base",
+    "ppu__ar_tall",
+    "ppu__ar_wide",
+    "ppu__area_compact",
+    "ppu__area_loose",
+    "ppu__base",
+    "riscv32i__ar_tall",
+    "riscv32i__ar_wide",
+    "riscv32i__area_loose",
+    "riscv32i__area_xloose",
+    "riscv32i__base",
+    "s35932__ar_tall",
+    "s35932__ar_wide",
+    "s35932__area_compact",
+    "s35932__area_loose",
+    "s35932__base"
+  ],
+  "args": {
+    "graph_root": "E:/CTS/dataset/asap7/graphs_cts_v3",
+    "output_dir": "E:\\CTS\\outputs\\cts_route_m0_pool_20260922",
+    "normalizer_path": "",
+    "recompute_normalizer": false,
+    "max_normalizer_graphs": 0,
+    "epochs": 100,
+    "early_stop_patience": 25,
+    "path_batch_size": 256,
+    "lr": 0.001,
+    "lr_schedule": "cosine",
+    "min_lr_ratio": 0.05,
+    "weight_decay": 0.0001,
+    "grad_clip": 5.0,
+    "seed": 42,
+    "hidden_dim": 128,
+    "gnn_layers": 3,
+    "dropout": 0.2,
+    "cell_emb_dim": 16,
+    "model_variant": "pool",
+    "path_gru_hidden": 64,
+    "fusion_dim": 128,
+    "head_type": "mlp",
+    "linear_skip": false,
+    "delay_loss": "smooth_l1",
+    "delay_huber_beta": 0.02,
+    "slack_weight": 0.0,
+    "disable_geometry": false,
+    "disable_design_features": false,
+    "ablation_grt": false,
+    "within_design_val_ratio": 0.2,
+    "designs": "",
+    "max_paths_per_record": 0,
+    "device": "cuda",
+    "resume_checkpoint": "E:\\CTS\\outputs\\cts_route_m0_pool_20260922\\last_model.pt",
+    "resume_optimizer": true
+  }
+}

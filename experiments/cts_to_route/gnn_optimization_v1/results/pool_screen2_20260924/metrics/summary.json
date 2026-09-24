@@ -1,0 +1,6 @@
+{
+  "best_epoch": 23,
+  "best_validation_macro_mae_ns": 0.02390030031868567,
+  "test_accessed": false,
+  "test_metrics": null
+}

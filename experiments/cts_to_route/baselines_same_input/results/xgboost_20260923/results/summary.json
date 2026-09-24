@@ -1,0 +1,470 @@
+{
+  "feature_dim": 997,
+  "input_contract": "same CTS node/edge/path-geometry/design feature sources as M0/M1",
+  "loss": {
+    "name": "SmoothL1",
+    "beta_ns": 0.02
+  },
+  "train_record_weighting": "equal total weight per (design,strategy)",
+  "model_selection": "validation macro-average per-record MAE",
+  "metrics_protocol": "macro-average per-(design,strategy) R2/MAE/RMSE/MAPE/normalized_MAE",
+  "critical_path_metrics": {
+    "top5_delay_recall": "top 5% route-delay ranking overlap; delay-based proxy only",
+    "slack_critical_delay_mae": "route-delay MAE on bottom-5%-slack samples, computed separately for max/min paths; slack is evaluation-only"
+  },
+  "models": {
+    "xgboost_smoothl1": {
+      "r2": -267109.8103173815,
+      "mae": 11.224055361747741,
+      "rmse": 16.444309687614442,
+      "MAPE_percent": 10700.292791748047,
+      "normalized_MAE": 14.544732523419412,
+      "top5_delay_recall": 0.05324712836138219,
+      "slack_critical_top5_recall": 0.08573617682755394,
+      "slack_critical_delay_mae": 14.651296849921346,
+      "test_paths": 135676,
+      "per_record": {
+        "aes__dens_low": {
+          "r2": -23835.607898220456,
+          "mae": 11.029216766357422,
+          "rmse": 18.288488388061523,
+          "MAPE_percent": 21084.25390625,
+          "normalized_MAE": 11.029216766357422,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 4.024631440639496,
+          "n": 612
+        },
+        "aes__fixed_area060_from_config": {
+          "r2": -44668.91881971723,
+          "mae": 14.1737642288208,
+          "rmse": 21.67902374267578,
+          "MAPE_percent": 27811.208984375,
+          "normalized_MAE": 14.1737642288208,
+          "top5_delay_recall": 0.03225806451612903,
+          "slack_critical_top5_recall": 0.03125,
+          "slack_critical_delay_mae": 12.486940383911133,
+          "n": 612
+        },
+        "aes__fixed_area070_from_config": {
+          "r2": -20544.2019469803,
+          "mae": 9.311847686767578,
+          "rmse": 16.423398971557617,
+          "MAPE_percent": 19429.9140625,
+          "normalized_MAE": 9.311847686767578,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 3.3749167919158936,
+          "n": 612
+        },
+        "aes__timing_probe": {
+          "r2": -20544.2019469803,
+          "mae": 9.311847686767578,
+          "rmse": 16.423398971557617,
+          "MAPE_percent": 19429.9140625,
+          "normalized_MAE": 9.311847686767578,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 3.3749167919158936,
+          "n": 612
+        },
+        "blabla__area_xxloose": {
+          "r2": -17211.983409988843,
+          "mae": 9.578681945800781,
+          "rmse": 14.576459884643555,
+          "MAPE_percent": 11317.7060546875,
+          "normalized_MAE": 5.321489758432318,
+          "top5_delay_recall": 0.00909090909090909,
+          "slack_critical_top5_recall": 0.02727272727272727,
+          "slack_critical_delay_mae": 9.208327174186707,
+          "n": 2200
+        },
+        "blabla__dens_high": {
+          "r2": -11242.974319628947,
+          "mae": 9.829566955566406,
+          "rmse": 14.870866775512695,
+          "MAPE_percent": 10746.3349609375,
+          "normalized_MAE": 5.460870313874736,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.05454545454545454,
+          "slack_critical_delay_mae": 10.12455402314663,
+          "n": 2200
+        },
+        "blabla__dens_low": {
+          "r2": -18117.763351070425,
+          "mae": 13.167194366455078,
+          "rmse": 19.83098793029785,
+          "MAPE_percent": 11633.2060546875,
+          "normalized_MAE": 7.315107690687669,
+          "top5_delay_recall": 0.08181818181818182,
+          "slack_critical_top5_recall": 0.045454545454545456,
+          "slack_critical_delay_mae": 11.523200035095215,
+          "n": 2200
+        },
+        "blabla__dens_xhigh": {
+          "r2": -14804.283815131335,
+          "mae": 9.29537582397461,
+          "rmse": 14.284347534179688,
+          "MAPE_percent": 10492.6923828125,
+          "normalized_MAE": 5.164097474783097,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.045454545454545456,
+          "slack_critical_delay_mae": 8.70109549164772,
+          "n": 2200
+        },
+        "ethmac__area_xxloose": {
+          "r2": -833139.7292152843,
+          "mae": 22.230636596679688,
+          "rmse": 24.38825035095215,
+          "MAPE_percent": 21165.669921875,
+          "normalized_MAE": 74.10211904437864,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.13157894736842105,
+          "slack_critical_delay_mae": 22.55842685699463,
+          "n": 736
+        },
+        "ethmac__dens_high": {
+          "r2": -334309.3116316909,
+          "mae": 10.278104782104492,
+          "rmse": 17.79656982421875,
+          "MAPE_percent": 10622.01953125,
+          "normalized_MAE": 34.26034791229773,
+          "top5_delay_recall": 0.4594594594594595,
+          "slack_critical_top5_recall": 0.3684210526315789,
+          "slack_critical_delay_mae": 27.38286781311035,
+          "n": 736
+        },
+        "ethmac__dens_low": {
+          "r2": -288694.706374265,
+          "mae": 13.437029838562012,
+          "rmse": 17.367433547973633,
+          "MAPE_percent": 15466.603515625,
+          "normalized_MAE": 44.7900976820748,
+          "top5_delay_recall": 0.02702702702702703,
+          "slack_critical_top5_recall": 0.15789473684210525,
+          "slack_critical_delay_mae": 18.174583435058594,
+          "n": 736
+        },
+        "ethmac__dens_xhigh": {
+          "r2": -294680.8211730071,
+          "mae": 11.099160194396973,
+          "rmse": 16.610301971435547,
+          "MAPE_percent": 12540.7978515625,
+          "normalized_MAE": 36.9971991778533,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.15789473684210525,
+          "slack_critical_delay_mae": 17.246663808822632,
+          "n": 736
+        },
+        "gcd__dens_low": {
+          "r2": -2651568.01577243,
+          "mae": 5.435836315155029,
+          "rmse": 13.573824882507324,
+          "MAPE_percent": 18127.9609375,
+          "normalized_MAE": 17.53495572047883,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 38.35224187374115,
+          "n": 70
+        },
+        "gcd__gcd_compact_repair_off": {
+          "r2": -739901.0949245387,
+          "mae": 4.43349027633667,
+          "rmse": 7.089984893798828,
+          "MAPE_percent": 11655.9287109375,
+          "normalized_MAE": 14.301581426577558,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 8.71968412399292,
+          "n": 70
+        },
+        "gcd__gcd_dense_cts20": {
+          "r2": -3387870.163047712,
+          "mae": 5.7331767082214355,
+          "rmse": 14.987630844116211,
+          "MAPE_percent": 19814.119140625,
+          "normalized_MAE": 18.494118271380714,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.25,
+          "slack_critical_delay_mae": 24.894065380096436,
+          "n": 70
+        },
+        "gcd__gcd_loose_cts80": {
+          "r2": -1133255.0643829813,
+          "mae": 5.829422473907471,
+          "rmse": 8.755943298339844,
+          "MAPE_percent": 15109.46484375,
+          "normalized_MAE": 18.80458848088335,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 6.477110385894775,
+          "n": 70
+        },
+        "ibex__dens_high": {
+          "r2": -51858.91127234507,
+          "mae": 14.29632568359375,
+          "rmse": 19.438283920288086,
+          "MAPE_percent": 9306.3359375,
+          "normalized_MAE": 11.346290310952703,
+          "top5_delay_recall": 0.23275862068965517,
+          "slack_critical_top5_recall": 0.02586206896551724,
+          "slack_critical_delay_mae": 12.730689525604248,
+          "n": 6946
+        },
+        "ibex__dens_low": {
+          "r2": -54750.19543261886,
+          "mae": 14.848930358886719,
+          "rmse": 20.99259376525879,
+          "MAPE_percent": 11136.5771484375,
+          "normalized_MAE": 11.784865453393614,
+          "top5_delay_recall": 0.3160919540229885,
+          "slack_critical_top5_recall": 0.10632183908045978,
+          "slack_critical_delay_mae": 15.42766284942627,
+          "n": 6946
+        },
+        "ibex__fixed_area065_from_config": {
+          "r2": -59349.691492491336,
+          "mae": 16.552980422973633,
+          "rmse": 21.477231979370117,
+          "MAPE_percent": 12626.86328125,
+          "normalized_MAE": 13.137286149413141,
+          "top5_delay_recall": 0.14080459770114942,
+          "slack_critical_top5_recall": 0.13793103448275862,
+          "slack_critical_delay_mae": 24.3420991897583,
+          "n": 6944
+        },
+        "ibex__fixed_area072_from_config": {
+          "r2": -51023.18799721675,
+          "mae": 15.27562427520752,
+          "rmse": 19.359859466552734,
+          "MAPE_percent": 10355.3828125,
+          "normalized_MAE": 12.123511421290742,
+          "top5_delay_recall": 0.011494252873563218,
+          "slack_critical_top5_recall": 0.008620689655172414,
+          "slack_critical_delay_mae": 15.303526878356934,
+          "n": 6944
+        },
+        "jpeg__dens_high": {
+          "r2": -74824.16552272788,
+          "mae": 15.371045112609863,
+          "rmse": 19.835468292236328,
+          "MAPE_percent": 8164.61083984375,
+          "normalized_MAE": 17.078938335354923,
+          "top5_delay_recall": 0.0022471910112359553,
+          "slack_critical_top5_recall": 0.13452914798206278,
+          "slack_critical_delay_mae": 17.312142372131348,
+          "n": 8894
+        },
+        "jpeg__dens_low": {
+          "r2": -100917.97855437946,
+          "mae": 19.380298614501953,
+          "rmse": 24.67227554321289,
+          "MAPE_percent": 9367.2119140625,
+          "normalized_MAE": 21.53366427155345,
+          "top5_delay_recall": 0.029213483146067417,
+          "slack_critical_top5_recall": 0.1031390134529148,
+          "slack_critical_delay_mae": 21.64181661605835,
+          "n": 8894
+        },
+        "jpeg__dens_xhigh": {
+          "r2": -49881.328930653835,
+          "mae": 12.346200942993164,
+          "rmse": 16.47359848022461,
+          "MAPE_percent": 6550.68115234375,
+          "normalized_MAE": 13.718000502665818,
+          "top5_delay_recall": 0.04719101123595506,
+          "slack_critical_top5_recall": 0.14349775784753363,
+          "slack_critical_delay_mae": 17.740592002868652,
+          "n": 8894
+        },
+        "jpeg__fixed_util60_from_config": {
+          "r2": -100917.97855437946,
+          "mae": 19.380298614501953,
+          "rmse": 24.67227554321289,
+          "MAPE_percent": 9367.2119140625,
+          "normalized_MAE": 21.53366427155345,
+          "top5_delay_recall": 0.029213483146067417,
+          "slack_critical_top5_recall": 0.1031390134529148,
+          "slack_critical_delay_mae": 21.64181661605835,
+          "n": 8894
+        },
+        "picorv32__area_xxloose": {
+          "r2": -14021.929344051954,
+          "mae": 11.302324295043945,
+          "rmse": 16.187808990478516,
+          "MAPE_percent": 5190.337890625,
+          "normalized_MAE": 11.302324295043945,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.0,
+          "slack_critical_delay_mae": 11.647258520126343,
+          "n": 2954
+        },
+        "picorv32__dens_high": {
+          "r2": -16821.461182918058,
+          "mae": 14.019824981689453,
+          "rmse": 18.597013473510742,
+          "MAPE_percent": 6411.72412109375,
+          "normalized_MAE": 14.019824981689453,
+          "top5_delay_recall": 0.013513513513513514,
+          "slack_critical_top5_recall": 0.02027027027027027,
+          "slack_critical_delay_mae": 16.29582166671753,
+          "n": 2954
+        },
+        "picorv32__dens_low": {
+          "r2": -7865.192934339427,
+          "mae": 6.743598461151123,
+          "rmse": 11.060195922851562,
+          "MAPE_percent": 4193.9365234375,
+          "normalized_MAE": 6.743598461151123,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.16216216216216217,
+          "slack_critical_delay_mae": 11.40475845336914,
+          "n": 2954
+        },
+        "picorv32__dens_xhigh": {
+          "r2": -17335.044376975293,
+          "mae": 13.006845474243164,
+          "rmse": 16.77960205078125,
+          "MAPE_percent": 5886.59326171875,
+          "normalized_MAE": 13.006845474243164,
+          "top5_delay_recall": 0.1554054054054054,
+          "slack_critical_top5_recall": 0.16891891891891891,
+          "slack_critical_delay_mae": 16.69417715072632,
+          "n": 2954
+        },
+        "ppu__area_xxloose": {
+          "r2": -31195.611309987486,
+          "mae": 9.573345184326172,
+          "rmse": 13.05726432800293,
+          "MAPE_percent": 7235.4677734375,
+          "normalized_MAE": 9.573345184326172,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.13541666666666666,
+          "slack_critical_delay_mae": 14.134360313415527,
+          "n": 5742
+        },
+        "ppu__dens_high": {
+          "r2": -26508.019281871468,
+          "mae": 9.21888542175293,
+          "rmse": 12.992362022399902,
+          "MAPE_percent": 6258.6494140625,
+          "normalized_MAE": 9.21888542175293,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.034722222222222224,
+          "slack_critical_delay_mae": 10.58537220954895,
+          "n": 5742
+        },
+        "ppu__dens_low": {
+          "r2": -49676.97230652998,
+          "mae": 10.042024612426758,
+          "rmse": 17.72491455078125,
+          "MAPE_percent": 7945.109375,
+          "normalized_MAE": 10.042024612426758,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.16666666666666666,
+          "slack_critical_delay_mae": 16.998016953468323,
+          "n": 5742
+        },
+        "ppu__dens_xhigh": {
+          "r2": -43121.254647382506,
+          "mae": 8.562105178833008,
+          "rmse": 15.115196228027344,
+          "MAPE_percent": 7653.0751953125,
+          "normalized_MAE": 8.562105178833008,
+          "top5_delay_recall": 0.013888888888888888,
+          "slack_critical_top5_recall": 0.07291666666666666,
+          "slack_critical_delay_mae": 17.539268493652344,
+          "n": 5742
+        },
+        "riscv32i__dens_low": {
+          "r2": -1232.9373694859182,
+          "mae": 11.02993392944336,
+          "rmse": 15.204741477966309,
+          "MAPE_percent": 7422.04443359375,
+          "normalized_MAE": 8.75391588327556,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.03508771929824561,
+          "slack_critical_delay_mae": 13.02482008934021,
+          "n": 2246
+        },
+        "riscv32i__dens_xhigh": {
+          "r2": -2284.247460248148,
+          "mae": 14.60718059539795,
+          "rmse": 21.73908042907715,
+          "MAPE_percent": 7106.62451171875,
+          "normalized_MAE": 11.593000560283665,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.008771929824561403,
+          "slack_critical_delay_mae": 16.19420099258423,
+          "n": 2246
+        },
+        "riscv32i__fixed_area72_from_config": {
+          "r2": -1087.5690917493152,
+          "mae": 10.632821083068848,
+          "rmse": 14.958526611328125,
+          "MAPE_percent": 6087.052734375,
+          "normalized_MAE": 8.43874695519604,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.06140350877192982,
+          "slack_critical_delay_mae": 11.457761764526367,
+          "n": 2246
+        },
+        "riscv32i__fixed_area75_from_config": {
+          "r2": -988.2522797897966,
+          "mae": 8.876460075378418,
+          "rmse": 14.024720191955566,
+          "MAPE_percent": 8016.5908203125,
+          "normalized_MAE": 7.044809636954729,
+          "top5_delay_recall": 0.0,
+          "slack_critical_top5_recall": 0.16666666666666666,
+          "slack_critical_delay_mae": 14.826615810394287,
+          "n": 2246
+        },
+        "s35932__area_xxloose": {
+          "r2": -14398.101631503543,
+          "mae": 5.992359638214111,
+          "rmse": 8.572476387023926,
+          "MAPE_percent": 3547.593994140625,
+          "normalized_MAE": 2.9961798191070557,
+          "top5_delay_recall": 0.0625,
+          "slack_critical_top5_recall": 0.18181818181818182,
+          "slack_critical_delay_mae": 10.573110342025757,
+          "n": 3520
+        },
+        "s35932__dens_high": {
+          "r2": -21754.610596984032,
+          "mae": 5.926884174346924,
+          "rmse": 10.699067115783691,
+          "MAPE_percent": 3256.759765625,
+          "normalized_MAE": 2.963442087173462,
+          "top5_delay_recall": 0.09090909090909091,
+          "slack_critical_top5_recall": 0.07386363636363637,
+          "slack_critical_delay_mae": 10.883204936981201,
+          "n": 3520
+        },
+        "s35932__dens_low": {
+          "r2": -45754.12823163812,
+          "mae": 11.049907684326172,
+          "rmse": 16.341493606567383,
+          "MAPE_percent": 5198.94580078125,
+          "normalized_MAE": 5.524953842163086,
+          "top5_delay_recall": 0.10795454545454546,
+          "slack_critical_top5_recall": 0.07386363636363637,
+          "slack_critical_delay_mae": 12.356085300445557,
+          "n": 3520
+        },
+        "s35932__dens_xhigh": {
+          "r2": -12434.800863366287,
+          "mae": 6.751657009124756,
+          "rmse": 10.849425315856934,
+          "MAPE_percent": 3278.5361328125,
+          "normalized_MAE": 3.375828504562378,
+          "top5_delay_recall": 0.26704545454545453,
+          "slack_critical_top5_recall": 0.03409090909090909,
+          "slack_critical_delay_mae": 8.672469139099121,
+          "n": 3520
+        }
+      }
+    }
+  }
+}

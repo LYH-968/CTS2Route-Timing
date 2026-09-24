@@ -1,0 +1,4 @@
+{"alpha": 0.001, "val_macro_record_mae_ns": 0.022964300052262843}
+{"alpha": 0.01, "val_macro_record_mae_ns": 0.02308076851380368}
+{"alpha": 0.1, "val_macro_record_mae_ns": 0.023517590939688186}
+{"alpha": 1.0, "val_macro_record_mae_ns": 0.026047700154595076}
