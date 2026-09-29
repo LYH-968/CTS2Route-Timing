@@ -30,5 +30,4 @@ Each run gets a new directory under `results/` with `configs/`, `logs/`,
    readout on the same train/validation partition.
 3. Compare `ns` and clock-normalized delay targets without changing the
    physical split or supervised SmoothL1 definition.
-4. Report MAE, MAPE, normalized MAE and per-record metrics. Treat MAPE below
-   5% as a stretch target, not as a reason to filter or calibrate on test data.
+4. Report MAE, MAPE, normalized MAE and per-record metrics. 
