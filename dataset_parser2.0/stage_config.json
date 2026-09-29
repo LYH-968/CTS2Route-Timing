@@ -1,0 +1,8 @@
+{
+  "_comment": "Three-stage parse switch for ml_vector_parser.py. true = parse that stage's files into vectors, false = skip it. Each stage only ever reads files its own checkpoint produced (place: 3_place.*, cts: 4_cts.*, route: 6_final.* + SPEF/GRT/DRC reports). Override per run with --stages place,cts / --place / --no-route / --stage all.",
+  "stages": {
+    "place": true,
+    "cts": true,
+    "route": true
+  }
+}
